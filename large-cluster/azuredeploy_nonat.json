@@ -1,0 +1,255 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountPrefix": {
+            "type": "string"
+        },
+        "numberOfStorageAccounts": {
+            "type": "int"
+        },
+        "numberOfInstances": {
+            "type": "int"
+        },
+        "adminUsername": {
+            "type": "string",
+            "metadata": {
+              "description": "Admin username"
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+              "description": "Admin password"
+            }
+        },
+        "dnsNameforLBIP": {
+            "type": "string",
+            "defaultValue": "uniqueDnsNameforLBIP"
+        },
+        "lbName": {
+            "type": "string",
+            "defaultValue": "myLB"
+        },
+        "publicIPAddressName": {
+            "type": "string",
+            "defaultValue": "myPublicIP"
+        },
+        "vnetName": {
+            "type": "string",
+            "defaultValue": "myVNET"
+        },
+        "vmSize": {
+            "type": "string",
+            "defaultValue": "Standard_A1",
+            "allowedValues": [
+                "Standard_A0",
+                "Standard_A1",
+                "Standard_A2",
+                "Standard_A3",
+                "Standard_A4"
+            ]
+        }
+    },
+    "variables": {
+        "storageAccountType": "Standard_LRS",
+        "addressPrefix": "10.0.0.0/16",
+        "subnetName": "Subnet-1",
+        "subnetPrefix": "10.0.0.0/21",
+        "publicIPAddressType": "Dynamic",
+        "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))]",
+        "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
+        "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontend')]",
+        "baseTemplateUri" : "https://alancrp.blob.core.windows.net/templates/mcBaseTemplateNoNAT.json"
+
+    },
+    "resources": [
+        {
+            "apiVersion": "2015-05-01-preview",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddressName')]",
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat#
+root@9cadd0b397be:/crp/nonat# cat masterTemplate.json
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountPrefix": {
+            "type": "string"
+        },
+        "numberOfStorageAccounts": {
+            "type": "int"
+        },
+        "numberOfInstances": {
+            "type": "int"
+        },
+        "adminUsername": {
+            "type": "string",
+            "metadata": {
+              "description": "Admin username"
+            }
+        },
+        "adminPassword": {
+            "type": "securestring",
+            "metadata": {
+              "description": "Admin password"
+            }
+        },
+        "dnsNameforLBIP": {
+            "type": "string",
+            "defaultValue": "uniqueDnsNameforLBIP"
+        },
+        "lbName": {
+            "type": "string",
+            "defaultValue": "myLB"
+        },
+        "publicIPAddressName": {
+            "type": "string",
+            "defaultValue": "myPublicIP"
+        },
+        "vnetName": {
+            "type": "string",
+            "defaultValue": "myVNET"
+        },
+        "vmSize": {
+            "type": "string",
+            "defaultValue": "Standard_A1",
+            "allowedValues": [
+                "Standard_A0",
+                "Standard_A1",
+                "Standard_A2",
+                "Standard_A3",
+                "Standard_A4"
+            ]
+        }
+    },
+    "variables": {
+        "storageAccountType": "Standard_LRS",
+        "addressPrefix": "10.0.0.0/16",
+        "subnetName": "Subnet-1",
+        "subnetPrefix": "10.0.0.0/21",
+        "publicIPAddressType": "Dynamic",
+        "publicIPAddressID": "[resourceId('Microsoft.Network/publicIPAddresses',parameters('publicIPAddressName'))]",
+        "lbID": "[resourceId('Microsoft.Network/loadBalancers',parameters('lbName'))]",
+        "frontEndIPConfigID": "[concat(variables('lbID'),'/frontendIPConfigurations/loadBalancerFrontend')]",
+        "baseTemplateUri" : "https://alancrp.blob.core.windows.net/templates/mcBaseTemplateNoNAT.json"
+
+    },
+    "resources": [
+        {
+            "apiVersion": "2015-05-01-preview",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIPAddressName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "publicIPAllocationMethod": "[variables('publicIPAddressType')]",
+                "dnsSettings": {
+                    "domainNameLabel": "[parameters('dnsNameforLBIP')]"
+                }
+            }
+        },
+        {
+            "apiVersion": "2015-05-01-preview",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('vnetName')]",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "[variables('addressPrefix')]"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "[variables('subnetName')]",
+                        "properties": {
+                            "addressPrefix": "[variables('subnetPrefix')]"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "2015-05-01-preview",
+            "name": "[parameters('lbName')]",
+            "type": "Microsoft.Network/loadBalancers",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[concat('Microsoft.Network/publicIPAddresses/', parameters('publicIPAddressName'))]",
+                "[concat('Microsoft.Network/virtualNetworks/', parameters('vnetName'))]"
+            ],
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontend",
+                        "properties": {
+                            "publicIPAddress": {
+                                "id": "[variables('publicIPAddressID')]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "LoadBalancerBackend"
+
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts",
+            "name": "[concat(parameters('storageAccountPrefix'), padLeft(copyindex(), 2, '0'))]",
+            "apiVersion": "2015-05-01-preview",
+            "location": "[resourceGroup().location]",
+            "copy": {
+                "name": "staLoop",
+                "count": "[parameters('numberOfStorageAccounts')]"
+            },
+            "properties": {
+                "accountType": "[variables('storageAccountType')]"
+            }
+        },
+        {
+            "name": "[concat('clusterSet', copyindex())]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "copy": {
+                "name": "deploymentLoop",
+                "count": "[parameters('numberOfStorageAccounts')]"
+            },
+            "dependsOn": [
+                "[concat('Microsoft.Network/loadBalancers/', parameters('lbName'))]",
+                "[concat('Microsoft.Storage/storageAccounts/', parameters('storageAccountPrefix'), padLeft(copyindex(), 2, '0'))]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                  "uri": "[variables('baseTemplateUri')]",
+                  "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "baseStorageAccountName": { "value": "[concat(parameters('storageAccountPrefix'), padLeft(copyindex(), 2, '0'))]"},
+                    "baseAdminUsername" :  { "value": "[parameters('adminUsername')]"},
+                    "baseAdminPassword" :  { "value": "[parameters('adminPassword')]"},
+                    "baseNumberOfInstances" : { "value": "[parameters('numberOfInstances')]"},
+                    "baseVmSize" : { "value": "[parameters('vmSize')]"},
+                    "basePrefix" :{ "value": "[padLeft(copyindex(), 2, '0')]"},
+                    "baseLbName" : { "value": "[parameters('lbName')]"}
+                }
+            }
+        }
+    ]
+}
