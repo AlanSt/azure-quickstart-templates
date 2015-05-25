@@ -24,8 +24,7 @@
             }
         },
         "dnsNameforLBIP": {
-            "type": "string",
-            "defaultValue": "uniqueDnsNameforLBIP"
+            "type": "string"
         },
         "lbName": {
             "type": "string",
