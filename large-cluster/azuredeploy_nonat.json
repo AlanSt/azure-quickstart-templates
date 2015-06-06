@@ -162,7 +162,7 @@
                     "baseNumberOfInstances" : { "value": "[parameters('numberOfInstancesPerAccount')]"},
                     "baseVmSize" : { "value": "[parameters('vmSize')]"},
                     "basePrefix" :{ "value": "[padLeft(copyindex(), 2, '0')]"},
-                    "baseLbName" : { "value": "[parameters('lbName')]"}
+                    "baseLbName" : { "value": "[parameters('lbName')]"},
                     "baseVirtualNetworkName": { "value": "[parameters('vnetName')]" }
                 }
             }
