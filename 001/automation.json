@@ -11,9 +11,6 @@
     "transferSA": {
       "type": "string"
     },
-    "transferKey": {
-      "type": "string"
-    },
     "numberOfSAs": {
       "type": "int"
     },
@@ -71,7 +68,7 @@
             },
             "parameters": {
                 "TransferSA": "transferSA",
-                "TransferKey": "transferKey",
+                "TransferKey": "listKeys('transferSA').key1",
                 "DataSA": "concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), parameters('copyindex()'))), parameters('uniqueBit'))",
                 "DataKey": "listKeys(concat('Microsoft.Storage/storageAccounts/', concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), parameters('copyindex()'))), parameters('uniqueBit'))), '2015-05-01-preview').key1"
             }
