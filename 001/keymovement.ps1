@@ -12,5 +12,6 @@ param(
 $DataKey > ".\$DataSA.sa"
  
 $context = New-AzureStorageContext -StorageAccountName $TransferSA -StorageAccountKey $TransferKey
-Set-AzureStorageBlobContent -Container "vhds" -File ".\$DataSA.sa" -Blob "$DataSA.sa" -Context $context -Force
+New-AzureStorageContainer -Name "sa" -Context $context
+Set-AzureStorageBlobContent -Container "sa" -File ".\$DataSA.sa" -Blob "$DataSA.sa" -Context $context -Force
 
