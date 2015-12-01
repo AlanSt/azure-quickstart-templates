@@ -82,7 +82,9 @@
         "finalTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/final_vms.json",
 
         "downloadScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/download.sh",
-        "uploadScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/upload.sh"
+        "uploadScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/upload.sh",
+
+        "runbookScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/keymovement.ps1"
 
     },
     "resources": [
@@ -201,12 +203,37 @@
             }
         },
         {
+            "name": "[concat(parameters('uniqueBit'), 'automation')]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "dependsOn": [
+                "[concat('Microsoft.Storage/storageAccounts/transfer', parameters('uniqueBit'), 'sa')]",
+                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'base')]"
+            ],
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('uploadTemplateUri')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": { "value": "[variables('location')]" },
+                    "uniqueBit": { "value": "[parameters('uniqueBit')]" },
+                    "transferSA": { "value": "[concat('transfer', parameters('uniqueBit'), 'sa')]" },
+                    "numberOfSAs": { "value": "[parameters('numberOfSAs')]" },
+                    "runbookScriptURI": { "value": "[variables('runbookScriptURI')]" }
+                }
+            }
+        },
+        {
             "apiVersion": "2015-05-01-preview",
             "type": "Microsoft.Compute/virtualMachines/extensions",
             "name": "[concat('transfer', parameters('uniqueBit'), 'vm/dl')]",
             "location": "[variables('location')]",
             "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/transfer', parameters('uniqueBit'), 'vm')]"
+                "[concat('Microsoft.Compute/virtualMachines/transfer', parameters('uniqueBit'), 'vm')]",
+                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'automation')]"
+
             ],
             "copy": {
                 "name": "downloadLoop",
@@ -225,37 +252,11 @@
             }
         },
         {
-            "name": "[concat('upload', copyindex())]",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
-            "copy": {
-                "name": "uploadLoop",
-                "count": "[parameters('numberOfSAs')]"
-            },
-            "dependsOn": [
-                "downloadLoop"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('uploadTemplateUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "location": { "value": "[variables('location')]" },
-                    "extName": { "value": "[concat('transfer', parameters('uniqueBit'), 'vm/ul', copyindex())]" },
-                    "uniqueBit": { "value": "[parameters('uniqueBit')]" },
-                    "index": { "value": "[copyIndex()]" },
-                    "uploadScriptURI": { "value": "[variables('uploadScriptURI')]" }
-                }
-            }
-        },
-        {
             "name": "[concat(parameters('uniqueBit'), 'full')]",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "dependsOn": [
-                "uploadLoop"
+                "downloadLoop"
             ],
             "properties": {
                 "mode": "Full",
