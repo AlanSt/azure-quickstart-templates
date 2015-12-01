@@ -69,8 +69,8 @@
             "parameters": {
                 "TransferSA": "[parameters('transferSA')]",
                 "TransferKey": "[listKeys(concat('Microsoft.Storage/storageAccounts/', parameters('transferSA')), '2015-05-01-preview').key1]",
-                "DataSA": "[concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), parameters('copyindex()'))), parameters('uniqueBit'))]",
-                "DataKey": "[listKeys(concat('Microsoft.Storage/storageAccounts/', concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), parameters('copyindex()'))), parameters('uniqueBit'))), '2015-05-01-preview').key1]"
+                "DataSA": "[concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyindex())), parameters('uniqueBit'))]",
+                "DataKey": "[listKeys(concat('Microsoft.Storage/storageAccounts/', concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyindex())), parameters('uniqueBit'))), '2015-05-01-preview').key1]"
             }
         }
     }
