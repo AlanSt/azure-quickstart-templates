@@ -77,12 +77,12 @@
         "transferImageOffer": "UbuntuServer",
         "ubuntuOSVersion": "15.04",
 
-        "commonObjectTemplateUri": "https://raw.githubusercontent.com/gatneil/azure-quickstart-templates/customscale/401-custom-images-scale/common_object.json",
-        "uploadTemplateUri": "https://raw.githubusercontent.com/gatneil/azure-quickstart-templates/customscale/401-custom-images-scale/upload.json",
-        "finalTemplateUri": "https://raw.githubusercontent.com/gatneil/azure-quickstart-templates/customscale/401-custom-images-scale/final_vms.json",
+        "commonObjectTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/common_object.json",
+        "uploadTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/upload.json",
+        "finalTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/final_vms.json",
 
-        "downloadScriptURI": "https://raw.githubusercontent.com/gatneil/azure-quickstart-templates/customscale/401-custom-images-scale/download.sh",
-        "uploadScriptURI": "https://raw.githubusercontent.com/gatneil/azure-quickstart-templates/customscale/401-custom-images-scale/upload.sh"
+        "downloadScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/download.sh",
+        "uploadScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/upload.sh"
 
     },
     "resources": [
