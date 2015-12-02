@@ -25,14 +25,14 @@ blobxfer $sa_name $container_name /mnt/ --remoteresource $blob_name --storageacc
 sa_domain=$(echo "$3" | cut -f3 -d/)
 sa_name=$(echo $sa_domain | cut -f1 -d.)
 
-blobxfer $sa_name "sas" . --storageaccountkey $4 --download --no-computefilemd5
+blobxfer $sa_name "sas" . --remoteresource . --storageaccountkey $4 --download --no-computefilemd5
 
 filelist=$(ls *.sa)
 for entry in ${filelist}
 do
   key=$(<${entry})
   account=${entry%.sa}
-  blobxfer ${account} "vhds" "/mnt/$blob_name" --storageaccountkey $key --upload --no-computefilemd5 --autovhd &
+  blobxfer ${account} "vhds" "/mnt/$blob_name" --remoteresource "$blob_name" --storageaccountkey $key --upload --no-computefilemd5 --autovhd &
 done
 
 
