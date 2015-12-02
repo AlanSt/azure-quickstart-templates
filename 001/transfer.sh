@@ -25,7 +25,7 @@ blobxfer $sa_name $container_name /mnt/ --remoteresource $blob_name --storageacc
 sa_domain=$(echo "$3" | cut -f3 -d/)
 sa_name=$(echo $sa_domain | cut -f1 -d.)
 
-blobxfer $sa_name "sa" . --storageaccountkey $4 --download --no-computefilemd5
+blobxfer $sa_name "sas" . --storageaccountkey $4 --download --no-computefilemd5
 
 filelist=$(ls *.sa)
 for entry in ${filelist}
