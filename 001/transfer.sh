@@ -4,13 +4,6 @@
 # $3 - List of accounts to upload to storage account
 # $4 - List of accounts to upload to storage key
 
-#wget https://bootstrap.pypa.io/get-pip.py
-#python get-pip.py
-#pip install azure-servicemanagement-legacy
-#pip install azure-storage
-#pip install requests
-#pip install blobxfer
-
 apt-get -y update
 apt-get -y install python3-pip
 pip3 install blobxfer
