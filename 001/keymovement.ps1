@@ -15,3 +15,5 @@ $context = New-AzureStorageContext -StorageAccountName $TransferSA -StorageAccou
 New-AzureStorageContainer -Name "sas" -Context $context
 Set-AzureStorageBlobContent -Container "sas" -File ".\$DataSA.sa" -Blob "$DataSA.sa" -Context $context -Force
 
+$context = New-AzureStorageContext -StorageAccountName $DataSA -StorageAccountKey $DataKey
+New-AzureStorageContainer -Name "vhds" -Context $context
