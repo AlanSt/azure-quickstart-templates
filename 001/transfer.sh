@@ -32,7 +32,7 @@ for entry in ${filelist}
 do
   key=$(<${entry})
   account=${entry%.sa}
-  blobxfer ${account} $container_name "/mnt/$blob_name" --storageaccountkey $key --upload --no-computefilemd5 --autovhd &
+  blobxfer ${account} "vhds" "/mnt/$blob_name" --storageaccountkey $key --upload --no-computefilemd5 --autovhd &
 done
 
 
