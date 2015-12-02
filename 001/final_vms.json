@@ -6,7 +6,7 @@
             "type": "string"
         },
         "commonObjectTemplateUri": {
-            "type": "int"
+            "type": "string"
         },
         "numberOfSAs": {
             "type": "int"
