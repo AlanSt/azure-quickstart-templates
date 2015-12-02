@@ -33,7 +33,7 @@
             "typeHandlerVersion": "1.2",
             "settings": {
                 "fileUris": [
-                    "[variables('transferScriptURI')]"
+                    "[parameters('transferScriptURI')]"
                 ],
                 "commandToExecute": "[concat('bash download.sh ', parameters('imageLocation'),' ', parameters('imageKey'),' ',parameters('transferSA'),' ',listKeys(concat('Microsoft.Storage/storageAccounts/', parameters('transferSA')), '2015-05-01-preview').key1)]"
             }
