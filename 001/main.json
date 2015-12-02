@@ -259,7 +259,7 @@
                 "downloadLoop"
             ],
             "properties": {
-                "mode": "Full",
+                "mode": "Complete",
                 "templateLink": {
                     "uri": "[variables('finalTemplateUri')]",
                     "contentVersion": "1.0.0.0"
