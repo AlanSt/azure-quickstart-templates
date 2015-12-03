@@ -93,11 +93,10 @@
                 },
                 "parameters": {
                     "clusterName": { "value": "[concat(parameters('uniqueBit'), padLeft(copyindex(), 2, '0'))]" },
-                    "sourceImageURI": { "value": "[concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyIndex())), parameters('uniqueBit'))]" },
+                    "sourceImageURI": { "value": "[concat('https://',uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyIndex())), parameters('uniqueBit'),'.blob.core.windows.net/vhds/',parameters('blobName'))]" },
                     "instanceCountPerSA": { "value": "[parameters('instanceCountPerSA')]" },
                     "vmSize": { "value": "[parameters('vmSize')]" },
                     "OSType": { "value": "[parameters('OSType')]" },
-                    "blobName": { "value": "[parameters('blobName')]" },
                     "vnetName": { "value": "[parameters('vnetName')]" },
                     "subnetName": { "value": "[parameters('subnetName')]" },
                     "location": { "value": "[parameters('location')]" },
