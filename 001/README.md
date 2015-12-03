@@ -16,3 +16,4 @@ Planned improvements include:
 - pass storage keys securely through the system
 - add support for individual vms
 - add support for individual vms inside an availability set (needed for some RDMA setups)
+- add support for SAS keys, or images with no security on them
