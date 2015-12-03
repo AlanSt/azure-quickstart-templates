@@ -38,7 +38,7 @@
     "resources": [
         {
             "type": "Microsoft.Compute/virtualMachineScaleSets",
-            "apiVersion": "2015-01-01",
+            "apiVersion": "2015-06-15",
             "name": "[parameters('clusterName')]",
             "location": "[parameters('location')]",
             "sku": {
