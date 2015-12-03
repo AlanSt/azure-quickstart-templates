@@ -23,6 +23,9 @@
         "deploymentType": {
             "type": "string"
         },
+        "blobName": {
+            "type": "string"
+        },
         "vnetName": {
             "type": "string"
         },
@@ -94,6 +97,7 @@
                     "instanceCountPerSA": { "value": "[parameters('instanceCountPerSA')]" },
                     "vmSize": { "value": "[parameters('vmSize')]" },
                     "OSType": { "value": "[parameters('OSType')]" },
+                    "blobName": { "value": "[parameters('blobName')]" },
                     "vnetName": { "value": "[parameters('vnetName')]" },
                     "subnetName": { "value": "[parameters('subnetName')]" },
                     "location": { "value": "[parameters('location')]" },
