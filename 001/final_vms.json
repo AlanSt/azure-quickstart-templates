@@ -91,7 +91,6 @@
                 "parameters": {
                     "clusterName": { "value": "[concat(parameters('uniqueBit'), padLeft(copyindex(), 2, '0'))]" },
                     "sourceImageURI": { "value": "[concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyIndex())), parameters('uniqueBit'))]" },
-                    "uniqueBit": { "value": "[parameters('uniqueBit')]" },
                     "instanceCountPerSA": { "value": "[parameters('instanceCountPerSA')]" },
                     "vmSize": { "value": "[parameters('vmSize')]" },
                     "OSType": { "value": "[parameters('OSType')]" },
