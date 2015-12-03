@@ -76,6 +76,8 @@
         "transferImagePublisher": "Canonical",
         "transferImageOffer": "UbuntuServer",
         "ubuntuOSVersion": "15.04",
+        "imagePieces": "[split(parameters('imageLocation'),'/')]"
+        "blobName": "[variables('imagePieces')[sub(length(variables('imagePieces')),1)]"
 
         "commonObjectTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/common_object.json",
         "uploadTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/upload.json",
@@ -272,6 +274,7 @@
                     "vmSize": { "value": "[parameters('computeVMSize')]" },
                     "OSType": { "value": "[parameters('computeOSType')]" },
                     "deploymentType": { "value": "[parameters('deploymentType')]" },
+                    "blobName": { "value": "[variables('blobName')]" },
                     "vnetName": { "value": "[variables('vnetName')]" },
                     "addressPrefix": { "value": "[variables('addressPrefix')]" },
                     "subnetName": { "value": "[variables('subnetName')]" },
