@@ -52,6 +52,10 @@
             "apiVersion": "2015-06-15",
             "name": "[concat(parameters('uniqueBit'), padLeft(copyindex(), 2, '0'))]",
             "location": "[parameters('location')]",
+            "copy": {
+                "name": "deploymentLoop",
+                "count": "[parameters('numberOfSAs')]"
+            },
             "sku": {
                 "name": "[parameters('vmSize')]",
                 "tier": "Standard",
