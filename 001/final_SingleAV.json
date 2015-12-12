@@ -74,6 +74,7 @@
           "contentVersion": "1.0.0.0"
         },
         "parameters": {
+          "uniqueBit": { "value": "[parameters('uniqueBit')]" },
           "clusterName": { "value": "[concat(parameters('uniqueBit'), padLeft(copyindex(), 2, '0'))]" },
           "sourceImageURI": { "value": "[concat('https://',uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyIndex())), parameters('uniqueBit'),'.blob.core.windows.net/vhds/',parameters('blobName'))]" },
           "baseVHDURI": { "value": "[concat('https://',uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), copyIndex())), parameters('uniqueBit'),'.blob.core.windows.net/vhds/')]" },

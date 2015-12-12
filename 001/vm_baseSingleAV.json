@@ -2,6 +2,9 @@
     "$schema": "http://schema.management.azure.com/schemas/2015-01-01-preview/deploymentTemplate.json",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "uniqueBit": {
+            "type": "string"
+        },
         "clusterName": {
             "type": "string"
         },
