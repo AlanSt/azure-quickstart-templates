@@ -32,6 +32,9 @@
         "subnetPrefix": {
             "type": "string"
         },
+        "templateLocation": {
+          "type": "string"
+        },
         "location": {
             "type": "string"
         },
@@ -43,7 +46,6 @@
         }
     },
     "variables": {
-        "baseTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/vm_base",
         "location": "[resourceGroup().location]"
     },
     "resources": [

@@ -95,17 +95,17 @@
         "imagePieces": "[split(parameters('imageLocation'),'/')]", 
         "blobName": "[variables('imagePieces')[sub(length(variables('imagePieces')),1)]]",
 
-        "fileLocation":  "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/",
+        "templateLocation":  "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/",
 
-        "commonObjectTemplateUri": "[concat(variables('fileLocation'), 'common_object.json')]",
-        "uploadTemplateUri": "[concat(variables('fileLocation'), 'upload.json')]",
-        "finalTemplateUri": "[concat(variables('fileLocation'), 'final_')]",
+        "commonObjectTemplateUri": "[concat(variables('templateLocation'), 'common_object.json')]",
+        "uploadTemplateUri": "[concat(variables('templateLocation'), 'upload.json')]",
+        "finalTemplateUri": "[concat(variables('templateLocation'), 'final_')]",
 
-        "transferTemplateURI": "[concat(variables('fileLocation'), 'transfer.json')]",
-        "transferScriptURI": "[concat(variables('fileLocation'), 'transfer.sh')]",
+        "transferTemplateURI": "[concat(variables('templateLocation'), 'transfer.json')]",
+        "transferScriptURI": "[concat(variables('templateLocation'), 'transfer.sh')]",
 
-        "automationTemplateURI": "[concat(variables('fileLocation'), 'automation.json')]",
-        "runbookScriptURI": "[concat(variables('fileLocation'), 'keymovement.ps1')]"
+        "automationTemplateURI": "[concat(variables('templateLocation'), 'automation.json')]",
+        "runbookScriptURI": "[concat(variables('templateLocation'), 'keymovement.ps1')]"
 
     },
     "resources": [
@@ -294,6 +294,7 @@
                     "addressPrefix": { "value": "[variables('addressPrefix')]" },
                     "subnetName": { "value": "[variables('subnetName')]" },
                     "subnetPrefix": { "value": "[variables('subnetPrefix')]" },
+                    "templateLocation": { "value": "[variables('templateLocation')]" },
                     "location": { "value": "[variables('location')]" },
                     "adminUsername": { "value": "[parameters('adminUsername')]" },
                     "adminPassword": { "value": "[parameters('adminPassword')]" }
@@ -302,8 +303,3 @@
         }
     ]
 }
-
-
-
-
-
