@@ -57,7 +57,7 @@
             "allowedValues": [
                 "VMSS",
                 "Single",
-                "SingleAS"
+                "SingleAV"
             ],
             "metadata": {
                 "description": "This determines whether the VMs will be deployed using scale sets, as individual VMs, or individual VMs in an availability set (maximum 100 for the last option)."
