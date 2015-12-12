@@ -8,10 +8,16 @@
     "uniqueBit": {
       "type": "string"
     },
+    "imageLocation": {
+      "type": "string"
+    },
+    "imageKey": {
+      "type": "string"
+    },
     "index": {
       "type": "int"
     },
-    "uploadScriptURI": {
+    "downloadScriptURI": {
       "type": "string"
     }
   },
@@ -27,9 +33,9 @@
         "typeHandlerVersion": "1.2",
         "settings": {
           "fileUris": [
-            "[parameters('uploadScriptURI')]"
+            "[parameters('downloadScriptURI')]"
           ],
-          "commandToExecute": "[concat('bash upload.sh ', concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), parameters('index'))), parameters('uniqueBit')), ' ', listKeys(concat('Microsoft.Storage/storageAccounts/', concat(uniqueString(concat(resourceGroup().id, parameters('uniqueBit'), parameters('index'))), parameters('uniqueBit'))), '2015-05-01-preview').key1)]"
+          "commandToExecute": "[concat('bash download.sh ', parameters('imageLocation'),' ', parameters('imageKey'))]"
         }
       }
     }
