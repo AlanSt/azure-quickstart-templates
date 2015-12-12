@@ -95,15 +95,17 @@
         "imagePieces": "[split(parameters('imageLocation'),'/')]", 
         "blobName": "[variables('imagePieces')[sub(length(variables('imagePieces')),1)]]",
 
-        "commonObjectTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/common_object.json",
-        "uploadTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/upload.json",
-        "finalTemplateUri": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/final_",
+        "fileLocation":  "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/",
 
-        "transferTemplateURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/transfer.json",
-        "transferScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/transfer.sh",
+        "commonObjectTemplateUri": "[concat(variables('fileLocation'), 'common_object.json')]",
+        "uploadTemplateUri": "[concat(variables('fileLocation'), 'upload.json')]",
+        "finalTemplateUri": "[concat(variables('fileLocation'), 'final_')]",
 
-        "automationTemplateURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/automation.json",
-        "runbookScriptURI": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/401gen/001/keymovement.ps1"
+        "transferTemplateURI": "[concat(variables('fileLocation'), 'transfer.json')]",
+        "transferScriptURI": "[concat(variables('fileLocation'), 'transfer.sh')]",
+
+        "automationTemplateURI": "[concat(variables('fileLocation'), 'automation.json')]",
+        "runbookScriptURI": "[concat(variables('fileLocation'), 'keymovement.ps1')]"
 
     },
     "resources": [
