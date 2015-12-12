@@ -36,8 +36,9 @@
             "type": "securestring"
         }
     },
-    "variables": {
-    },
+  "variables": {
+    "availabilitySetName":  "[concat(parameters('uniqueBit'), 'av')]"
+  },
     "resources": [
         {
             "apiVersion": "2015-05-01-preview",
@@ -75,6 +76,9 @@
                 "[concat('Microsoft.Network/networkInterfaces/', 'nic', parameters('clusterName'), padLeft(copyindex(), 2, '0'))]"
             ],
             "properties": {
+                "availabilitySet": {
+                  "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySetName'))]"
+                },
                 "hardwareProfile": {
                     "vmSize": "[parameters('vmSize')]"
                 },
