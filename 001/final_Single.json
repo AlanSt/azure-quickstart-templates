@@ -55,9 +55,6 @@
                 "name": "deploymentLoop",
                 "count": "[parameters('numberOfSAs')]"
             },
-            "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'fullbase')]"
-            ],
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
