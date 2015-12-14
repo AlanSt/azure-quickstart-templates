@@ -18,7 +18,7 @@
   "resources": [
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('uniqueBit'), 'ext')]",
+      "name": "[concat('transfer', parameters('uniqueBit'), 'vm/ext')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
       "properties": {
