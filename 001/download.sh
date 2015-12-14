@@ -16,6 +16,12 @@ sa_name=$(echo $sa_domain | cut -f1 -d.)
 container_name=$(echo "$1" | cut -f4 -d/)
 blob_name=$(echo "$1" | cut -f5 -d/)
 
+echo "sa name, container name, blob name:"    
+echo $sa_name    
+echo $container_name    
+echo $blob_name    
+echo "$container_name,$blob_name" > /mnt/config.txt  
+
 blobxfer $sa_name $container_name /mnt/ --remoteresource $blob_name --storageaccountkey $2 --download --no-computefilemd5
 
 
