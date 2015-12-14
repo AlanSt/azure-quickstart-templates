@@ -101,6 +101,10 @@
         "uploadTemplateUri": "[concat(variables('templateLocation'), 'upload.json')]",
         "finalTemplateUri": "[concat(variables('templateLocation'), 'final_')]",
 
+        "downloadTemplateURI": "[concat(variables('templateLocation'), 'download.json')]",
+        "downloadScriptURI": "[concat(variables('templateLocation'), 'download.sh')]",
+        "uploadTemplateURI": "[concat(variables('templateLocation'), 'upload.json')]",
+        "uploadScriptURI": "[concat(variables('templateLocation'), 'upload.sh')]",
         "transferTemplateURI": "[concat(variables('templateLocation'), 'transfer.json')]",
         "transferScriptURI": "[concat(variables('templateLocation'), 'transfer.sh')]",
 
@@ -224,40 +228,16 @@
             }
         },
         {
-            "name": "[concat(parameters('uniqueBit'), 'automation')]",
+            "name": "[concat(parameters('uniqueBit'), 'script0')]",
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "dependsOn": [
-                "[concat('Microsoft.Storage/storageAccounts/transfer', parameters('uniqueBit'), 'sa')]",
-                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'base')]"
+                "[concat('Microsoft.Compute/virtualMachines/transfer', parameters('uniqueBit'), 'vm')]"
             ],
             "properties": {
                 "mode": "Incremental",
                 "templateLink": {
-                    "uri": "[variables('automationTemplateUri')]",
-                    "contentVersion": "1.0.0.0"
-                },
-                "parameters": {
-                    "location": { "value": "[variables('location')]" },
-                    "uniqueBit": { "value": "[parameters('uniqueBit')]" },
-                    "transferSA": { "value": "[concat('transfer', parameters('uniqueBit'), 'sa')]" },
-                    "numberOfSAs": { "value": "[parameters('numberOfSAs')]" },
-                    "runbookScriptURI": { "value": "[variables('runbookScriptURI')]" }
-                }
-            }
-        },
-        {
-            "name": "[concat(parameters('uniqueBit'), 'transfer')]",
-            "type": "Microsoft.Resources/deployments",
-            "apiVersion": "2015-01-01",
-            "dependsOn": [
-                "[concat('Microsoft.Compute/virtualMachines/transfer', parameters('uniqueBit'), 'vm')]",
-                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'automation')]"
-            ],
-            "properties": {
-                "mode": "Incremental",
-                "templateLink": {
-                    "uri": "[variables('transferTemplateURI')]",
+                    "uri": "[variables('downloadTemplateURI')]",
                     "contentVersion": "1.0.0.0"
                 },
                 "parameters": {
@@ -265,8 +245,32 @@
                     "uniqueBit": { "value": "[parameters('uniqueBit')]" },
                     "imageLocation": { "value": "[parameters('imageLocation')]" },
                     "imageKey": { "value": "[parameters('imageKey')]" },
-                    "transferSA": { "value": "[concat('transfer', parameters('uniqueBit'), 'sa')]" },
-                    "transferScriptURI": { "value": "[variables('transferScriptURI')]" }
+                    "downloadScriptURI": { "value": "[variables('downloadScriptURI')]" }
+                }
+            }
+        },
+        {
+            "name": "[concat(parameters('uniqueBit'), 'script', string(add(copyIndex(), 1)))]",
+            "type": "Microsoft.Resources/deployments",
+            "apiVersion": "2015-01-01",
+            "dependsOn": [
+                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'script', copyIndex())]"
+            ],
+            "copy": {
+                "name": "uploadLoop",
+                "count": "[parameters('numberOfSAs')]"
+            },
+            "properties": {
+                "mode": "Incremental",
+                "templateLink": {
+                    "uri": "[variables('uploadTemplateURI')]",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parameters": {
+                    "location": { "value": "[variables('location')]" },
+                    "uniqueBit": { "value": "[parameters('uniqueBit')]" },
+                    "index": { "value": "[copyIndex()]" },
+                    "uploadScriptURI": { "value": "[variables('uploadScriptURI')]" }
                 }
             }
         },
@@ -275,7 +279,7 @@
             "type": "Microsoft.Resources/deployments",
             "apiVersion": "2015-01-01",
             "dependsOn": [
-                "[concat('Microsoft.Resources/deployments/', parameters('uniqueBit'), 'transfer')]"
+                "uploadLoop"
             ],
             "properties": {
                 "mode": "Incremental",

@@ -14,9 +14,6 @@
     "imageKey": {
       "type": "string"
     },
-    "index": {
-      "type": "int"
-    },
     "downloadScriptURI": {
       "type": "string"
     }
