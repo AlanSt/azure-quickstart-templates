@@ -1,11 +1,7 @@
 # accepts a blob uri (MUST HAVE https:// at the beginning) and a key
 
-#wget https://bootstrap.pypa.io/get-pip.py
-#python get-pip.py
-#pip install azure-servicemanagement-legacy
-#pip install azure-storage
-#pip install requests
-#pip install blobxfer
+[[ -z "$HOME" || ! -d "$HOME" ]] && { echo 'fixing $HOME'; HOME=/root; } 
+export HOME 
 
 apt-get -y update
 apt-get -y install python3-pip
