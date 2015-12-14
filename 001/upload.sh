@@ -9,5 +9,3 @@ azure storage container create vhds
 blob_name=$(cut -f2 -d, /mnt/config.txt) 
 blobxfer $1 vhds "/mnt/$blob_name" --remoteresource "$blob_name" --storageaccountkey $2 --upload --no-computefilemd5 --autovhd
  
-
-
