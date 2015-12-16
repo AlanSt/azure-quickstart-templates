@@ -31,7 +31,9 @@
         "settings": {
           "fileUris": [
             "[parameters('downloadScriptURI')]"
-          ],
+          ]
+	},
+	"protectedSettings": {
           "commandToExecute": "[concat('bash download.sh ', parameters('imageLocation'),' ', parameters('imageKey'))]"
         }
       }
