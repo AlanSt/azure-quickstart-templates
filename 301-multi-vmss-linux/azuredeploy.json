@@ -11,9 +11,8 @@
     },
     "numberOfVMSS":{
       "type":"int",
-      "maxValue":5,
       "metadata":{
-        "description":"Number of VMSSes to deploy (max of 5)"
+        "description":"Number of VMSSes to deploy"
       }
     },
     "instanceCountPerVMSS":{
