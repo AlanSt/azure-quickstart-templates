@@ -80,11 +80,7 @@
           "storageProfile": {
             "osDisk": {
               "vhdContainers": [
-                "[concat('https://', variables('uniqueStringArray')[0], parameters('newStorageAccountPrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[1], parameters('newStorageAccountPrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[2], parameters('newStorageAccountPrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[3], parameters('newStorageAccountPrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', variables('uniqueStringArray')[4], parameters('newStorageAccountPrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]"
+                "[concat('https://', variables('uniqueStringArray')[0], parameters('newStorageAccountPrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]"
               ],
               "name": "vmssosdisk",
               "caching": "ReadOnly",
