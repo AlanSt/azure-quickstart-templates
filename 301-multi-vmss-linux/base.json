@@ -32,11 +32,7 @@
     "storageAccountType": "Standard_LRS",
     "vhdContainerName": "vhds",
     "uniqueStringArray": [
-      "[concat(uniqueString(concat(resourceGroup().id, parameters('newStorageAccountPrefix'), '0')))]",
-      "[concat(uniqueString(concat(resourceGroup().id, parameters('newStorageAccountPrefix'), '1')))]",
-      "[concat(uniqueString(concat(resourceGroup().id, parameters('newStorageAccountPrefix'), '2')))]",
-      "[concat(uniqueString(concat(resourceGroup().id, parameters('newStorageAccountPrefix'), '3')))]",
-      "[concat(uniqueString(concat(resourceGroup().id, parameters('newStorageAccountPrefix'), '4')))]"
+      "[concat(uniqueString(concat(resourceGroup().id, parameters('newStorageAccountPrefix'), '0')))]"
     ],
     "saCount": "[length(variables('uniqueStringArray'))]",
     "computeApiVersion": "2016-03-30",
