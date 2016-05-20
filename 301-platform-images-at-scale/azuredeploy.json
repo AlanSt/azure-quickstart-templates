@@ -148,7 +148,7 @@
     "storageAccountType": "Standard_LRS",
     "location": "[resourceGroup().location]",
 
-    "templateLocation": "https://raw.githubusercontent.com/gatneil/azure-quickstart-templates/301-platform-images-at-scale/301-platform-images-at-scale/",
+    "templateLocation": "https://raw.githubusercontent.com/AlanSt/azure-quickstart-templates/patch-10/301-platform-images-at-scale/",
     "finalTemplateUri": "[concat(variables('templateLocation'), 'final_')]"
   },
   "resources": [
