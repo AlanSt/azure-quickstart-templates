@@ -91,7 +91,6 @@
         "[concat('Microsoft.Network/networkInterfaces/', 'nic', parameters('clusterName'), padLeft(copyindex(), 2, '0'))]"
       ],
       "properties": {
-        "availabilitySet": "[variables('availabilitySetBlock')]",
         "hardwareProfile": {
           "vmSize": "[parameters('vmSize')]"
         },
