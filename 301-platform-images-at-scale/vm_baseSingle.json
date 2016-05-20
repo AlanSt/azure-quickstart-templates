@@ -106,14 +106,6 @@
             "offer": "[parameters('imageOffer')]",
             "sku": "[parameters('imageSku')]",
             "version": "[parameters('imageVersion')]"
-          },
-          "osDisk": {
-            "name": "[concat(parameters('clusterName'),'-osDisk')]",
-            "caching": "ReadWrite",
-            "createOption": "FromImage",
-            "vhd": {
-              "uri": "[concat(parameters('baseVHDURI'),'osdisk', parameters('clusterName'), padLeft(copyIndex(), 2, '0'), '.vhd')]"
-            }
           }
         },
         "networkProfile": {
