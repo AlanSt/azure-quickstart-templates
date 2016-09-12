@@ -93,18 +93,6 @@
         },
         "virtualMachineProfile": {
           "storageProfile": {
-            "osDisk": {
-              "vhdContainers": [
-                "[concat('https://', uniqueString(concat(resourceGroup().id, parameters('uniquePrefix'), mod(add(0,mul(5,copyIndex())),parameters('numberOfSAs')))), parameters('uniquePrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', uniqueString(concat(resourceGroup().id, parameters('uniquePrefix'), mod(add(1,mul(5,copyIndex())),parameters('numberOfSAs')))), parameters('uniquePrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', uniqueString(concat(resourceGroup().id, parameters('uniquePrefix'), mod(add(2,mul(5,copyIndex())),parameters('numberOfSAs')))), parameters('uniquePrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', uniqueString(concat(resourceGroup().id, parameters('uniquePrefix'), mod(add(3,mul(5,copyIndex())),parameters('numberOfSAs')))), parameters('uniquePrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]",
-                "[concat('https://', uniqueString(concat(resourceGroup().id, parameters('uniquePrefix'), mod(add(4,mul(5,copyIndex())),parameters('numberOfSAs')))), parameters('uniquePrefix'), '.blob.core.windows.net/', variables('vhdContainerName'))]"
-              ],
-              "name": "vmssosdisk",
-              "caching": "ReadOnly",
-              "createOption": "FromImage"
-            },
             "imageReference": "[variables('imageReference')]"
           },
           "osProfile": {
