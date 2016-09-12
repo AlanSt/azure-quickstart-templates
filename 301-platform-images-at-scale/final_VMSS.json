@@ -93,6 +93,11 @@
         },
         "virtualMachineProfile": {
           "storageProfile": {
+            "osDisk": {  
+              "name": "vmssosdisk",  
+              "caching": "ReadOnly",  
+              "createOption": "FromImage"  
+            },  
             "imageReference": "[variables('imageReference')]"
           },
           "osProfile": {
